@@ -3,7 +3,7 @@ name: deploy
 on:
   push:
     branches: [ master ]
-    tags: [ v* ]
+    tags: [ v*, build* ]
 
 jobs:
   deploy:
@@ -30,17 +30,18 @@ jobs:
         run: |
           exec .github/scripts/import-profile.sh
 
+      - name: Yarn Dependencies
+        run:
+          yarn install
+          npx pod-install
+
       - name: Set Build Number
         run:
           cd ./ios
-          fastlane run increment_build_number
-          cd ..
+          fastlane run increment_build_number build_number:${{ github.run_number }}
 
       - name: Build app
-        run: |
-          yarn install
-          npx pod-install
-          cd ./ios
+        run:
           fastlane gym --scheme "deploy_example" --export_method app-store
 
       - name: Upload build artifacts
