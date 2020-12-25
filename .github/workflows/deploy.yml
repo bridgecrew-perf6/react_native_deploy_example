@@ -30,10 +30,6 @@ jobs:
         run: |
           exec .github/scripts/import-profile.sh
 
-      - name: Set App Environment
-        run: |
-          cp sample.env.js env.js
-
       - name: Build app
         run: |
           yarn install
