@@ -40,7 +40,7 @@ jobs:
 
       - name: Build app
         run:
-          fastlane gym --scheme "deploy_example" --export_method app-store
+          cd ./ios && fastlane gym --scheme "deploy_example" --export_method app-store
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
