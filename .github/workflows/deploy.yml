@@ -32,8 +32,7 @@ jobs:
 
       - name: Yarn Dependencies
         run:
-          yarn install
-          npx pod-install
+          yarn install && npx pod-install
 
       - name: Set Build Number
         run:
