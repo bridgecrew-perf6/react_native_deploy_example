@@ -34,7 +34,9 @@ jobs:
         run: |
           yarn install
           npx pod-install
-          cd ./ios && fastlane run increment_version_number bump_type:minor && fastlane gym --scheme "ikigai" --export_method app-store
+          cd ./ios
+          fastlane run increment_version_number bump_type:minor
+          fastlane gym --scheme "ikigai" --export_method app-store
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
