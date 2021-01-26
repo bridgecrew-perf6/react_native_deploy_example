@@ -83,13 +83,13 @@ jobs:
 
       - name: Build android app
         run:
-          cd ./android && ./gradlew bundleRelease > ./build.log 2>&1
+          cd ./android && ./gradlew bundleRelease
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: build.log
-          path: ./*.log
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: build.log
+      #     path: ./*.log
 
       - name: Upload release assets
         if: startsWith(github.ref, 'refs/tags/v')
